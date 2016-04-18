@@ -6,6 +6,7 @@ import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.DialogFragment;
@@ -97,6 +98,11 @@ public class LoginActivity2 extends AppCompatActivity implements AddEmergencyCon
         AddEmergencyContactFragment editNameDialog = new AddEmergencyContactFragment();
         editNameDialog.show(fm, "fragment_edit_name");
 
+    }
+
+    public void finishSignup(View v){
+        Intent myIntent = new Intent(LoginActivity2.this, HomeActivity.class);
+        LoginActivity2.this.startActivity(myIntent);
     }
 
     @Override

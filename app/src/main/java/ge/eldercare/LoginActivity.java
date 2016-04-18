@@ -163,9 +163,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
 
         // Reset errors.
         mNameView.setError(null);
@@ -212,9 +209,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
+            //showProgress(true);
+            Intent myIntent = new Intent(LoginActivity.this, LoginActivity2.class);
+            LoginActivity.this.startActivity(myIntent);
         }
     }
 

@@ -127,7 +127,8 @@
                 android:layout_marginTop="24dp" android:text="@string/next"
                 android:textStyle="bold"
                 android:background="@color/colorPrimary"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:onClick="finishSignup" />
 
         </LinearLayout>
     </ScrollView>
