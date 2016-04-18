@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:contextClickable="true"
+        android:clickable="true"
+        android:contentDescription="Chat Box 2"
+        android:paddingBottom="16dp"
+        android:background="@drawable/border_left"
+        android:id="@+id/mainHolder">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/senderImage"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/profile"
+            app:civ_border_width="2dp"
+            app:civ_border_color="@color/card_shadow_2"
+            android:layout_marginLeft="16dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/senderImage"
+            android:paddingRight="16dp"
+            android:paddingBottom="8dp"
+            android:id="@+id/rl2"
+            android:layout_marginLeft="16dp"
+            android:paddingTop="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Mr. Sohail Yar Khan"
+                android:id="@+id/senderName"
+                android:textSize="16dp"
+                android:textColor="#000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yo! Home boi. whats cooking?"
+                android:id="@+id/senderMessage"
+                android:textSize="14dp"
+                android:layout_below="@+id/senderName"
+                android:layout_marginTop="4dp"
+                android:textColor="#999" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="ge.eldercare.ChatActivity"
+    android:padding="0dp">
+
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:iosched="http://schemas.android.com/apk/res-auto"
+        android:layout_margin="0dp"
+        android:id="@+id/toolbar_actionbar"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:padding="0dp"
+        android:elevation="4dp">
+
+        <ImageButton
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@color/transparent"
+            android:src="@drawable/ic_arrow_back_24dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contextClickable="true"
+            android:clickable="true"
+            android:contentDescription="Chat Box 2">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/senderImage"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/profile"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/card_shadow_2"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/senderImage"
+                android:paddingRight="16dp"
+                android:paddingBottom="8dp"
+                android:id="@+id/rl2"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mr. Sohail Yar Khan"
+                    android:id="@+id/senderName"
+                    android:textSize="16sp"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ACTIVE NOW"
+                    android:id="@+id/status"
+                    android:textSize="13sp"
+                    android:textColor="@color/white"
+                    android:layout_below="@+id/senderName" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rv"
+        android:layout_marginTop="56dp"
+        android:layout_marginBottom="56dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:paddingLeft="16dp"
+        android:paddingTop="8dp">
+
+        <EditText android:id="@+id/password" android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:singleLine="true"
+            android:contentDescription="Message Imput"
+            android:backgroundTint="@color/transparent"
+            android:hint="Send message"
+            android:textSize="16sp"
+            android:layout_marginRight="56dp" />
+
+        <ImageButton
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:id="@+id/imageButton"
+            android:background="@color/transparent"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_send_24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="16dp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

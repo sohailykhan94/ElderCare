@@ -14,6 +14,7 @@
     <string name="signup_label">Sign up</string>
     <string name="prompt_date">Date of Birth</string>
     <string name="prompt_name">Full Name</string>
+    <string name="chat_activity">Chat</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
@@ -24,4 +25,5 @@
     <string name="title_activity_main2">Main2Activity</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_home2">HomeActivity2</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
 </resources>

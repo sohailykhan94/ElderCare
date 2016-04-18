@@ -1,16 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#fa6a6a" >
+    android:background="@color/white">
 
-    <TextView android:layout_width="fill_parent"
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Chat"
-        android:textSize="20dp"
-        android:layout_centerInParent="true"/>
+        android:text="Contacts"
+        android:id="@+id/textView3"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:textColor="#777" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:clickable="true"
+        android:contextClickable="true"
+        android:contentDescription="Chat Box 1"
+        android:id="@+id/rlMain1">
 
-</RelativeLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image1"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/profile"
+            app:civ_border_width="2dp"
+            app:civ_border_color="@color/card_shadow_2"
+            android:layout_marginLeft="16dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/profile_image1"
+            android:paddingRight="16dp"
+            android:background="@drawable/border_bottom_light"
+            android:paddingBottom="8dp"
+            android:id="@+id/rl1"
+            android:layout_marginLeft="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Mr. Sohail Yar Khan"
+                android:id="@+id/name1"
+                android:textSize="16dp"
+                android:textColor="#000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hey, how are you? missing you"
+                android:id="@+id/name2"
+                android:textSize="13dp"
+                android:layout_below="@+id/name1"
+                android:layout_marginTop="4dp"
+                android:textColor="#999" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:contextClickable="true"
+        android:clickable="true"
+        android:contentDescription="Chat Box 2">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/senderImage"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/profile2"
+            app:civ_border_width="2dp"
+            app:civ_border_color="@color/card_shadow_2"
+            android:layout_marginLeft="16dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/senderImage"
+            android:paddingRight="16dp"
+            android:background="@drawable/border_bottom_light"
+            android:paddingBottom="8dp"
+            android:id="@+id/rl2"
+            android:layout_marginLeft="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Mrs. Saher Khan"
+                android:id="@+id/senderName"
+                android:textSize="16dp"
+                android:textColor="#000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yo! Home boi. whats cooking?"
+                android:id="@+id/name4"
+                android:textSize="14dp"
+                android:layout_below="@+id/senderName"
+                android:layout_marginTop="4dp"
+                android:textColor="#999" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</LinearLayout>
