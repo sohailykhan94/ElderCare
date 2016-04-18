@@ -101,7 +101,7 @@ public class LoginActivity2 extends AppCompatActivity implements AddEmergencyCon
     }
 
     public void finishSignup(View v){
-        Intent myIntent = new Intent(LoginActivity2.this, HomeActivity.class);
+        Intent myIntent = new Intent(LoginActivity2.this, HomeActivity2.class);
         LoginActivity2.this.startActivity(myIntent);
     }
 

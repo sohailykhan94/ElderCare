@@ -8,6 +8,14 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import ge.eldercare.adapters.TabsPagerAdapter;
 
@@ -15,8 +23,15 @@ public class HomeActivity2 extends FragmentActivity implements
         ActionBar.TabListener {
 
     private ViewPager viewPager;
+    private Button AddSome;
     private TabsPagerAdapter mAdapter;
     private ActionBar actionBar;
+
+    private ArrayList<String> listItems=new ArrayList<String>();
+    private ArrayAdapter<String> adapter;
+    private int adapterCount = 0;
+
+
     // Tab titles
     private String[] tabs = { "CHAT", "LOGS", "PROFILE" };
 
@@ -29,8 +44,9 @@ public class HomeActivity2 extends FragmentActivity implements
         viewPager = (ViewPager) findViewById(R.id.pager);
         actionBar = getActionBar();
         mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
-
         viewPager.setAdapter(mAdapter);
+
+
         actionBar.setHomeButtonEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
@@ -76,5 +92,14 @@ public class HomeActivity2 extends FragmentActivity implements
     @Override
     public void onTabUnselected(Tab tab, FragmentTransaction ft) {
     }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
+
+    }
+
+
 
 }
