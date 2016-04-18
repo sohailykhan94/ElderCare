@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FC0E33</color>
+    <color name="colorPrimaryDark">#e4082a</color>
+    <color name="colorAccent">#FC0E33</color>
+    <color name="colorSecondary">#673AB7</color>
+    <color name="signUpBG">#F4F4F4</color>
+    <color name="white">#fff</color>
+    <color name="card_background">#ffffff</color>
+    <color name="card_shadow_1">#d4d4d4</color>
+    <color name="card_shadow_2">#dddddd</color>
+    <color name="card_detailing">#eee</color>
+</resources>

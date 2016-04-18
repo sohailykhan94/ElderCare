@@ -1,0 +1,81 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/edit_name"
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:layout_gravity="center" android:orientation="vertical"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="8dp"
+        android:background="@drawable/border_bottom" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Add emergency contact"
+            android:id="@+id/textView" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Title"
+        android:contentDescription="Title Input"
+        android:textSize="18dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="16dp" />
+
+    <RadioGroup
+        android:id="@+id/radioTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
+
+        <RadioButton
+            android:id="@+id/radioMr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mr."
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/radioMrs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mrs." />
+
+    </RadioGroup>
+
+    <android.support.design.widget.TextInputLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="Name"
+        android:layout_marginTop="16dp">
+
+        <EditText android:id="@+id/emergencyName" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="Name"
+            android:inputType="textPersonName" android:maxLines="1"
+            android:singleLine="true"
+            android:contentDescription="Emergency Name input" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="Name"
+        android:layout_marginTop="16dp">
+
+        <EditText android:id="@+id/emergencyNumber" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="Number"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:contentDescription="Emergency Number input"
+            android:inputType="phone" />
+
+    </android.support.design.widget.TextInputLayout>
+
+</LinearLayout>
