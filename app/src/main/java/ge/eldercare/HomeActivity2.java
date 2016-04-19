@@ -9,6 +9,7 @@ import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.Context;
+import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -31,7 +32,10 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
@@ -39,7 +43,7 @@ import ge.eldercare.adapters.TabsPagerAdapter;
 
 public class HomeActivity2 extends FragmentActivity implements
         ActionBar.TabListener, SensorEventListener, GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener {
+        GoogleApiClient.OnConnectionFailedListener,LocationListener {
 
     private ViewPager viewPager;
     private Button AddSome;
@@ -50,12 +54,14 @@ public class HomeActivity2 extends FragmentActivity implements
     private long lastUpdate = 0;
     private float last_x, last_y, last_z;
     private static final int SHAKE_THRESHOLD = 600;
+    private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 
     private ArrayList<String> listItems = new ArrayList<String>();
     private ArrayAdapter<String> adapter;
     private int adapterCount = 0;
 
     private GoogleApiClient mGoogleApiClient;
+    private LocationRequest mLocationRequest;
     public static final String TAG = HomeActivity2.class.getSimpleName();
 
     // Tab titles
@@ -113,6 +119,10 @@ public class HomeActivity2 extends FragmentActivity implements
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build();
+        mLocationRequest = LocationRequest.create()
+                .setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY)//100m Accuracy
+                .setInterval(3600 * 1000)        // 1 min, in milliseconds
+                .setFastestInterval(10 * 1000); // 10 second, in milliseconds
     }
 
     @Override
@@ -125,6 +135,7 @@ public class HomeActivity2 extends FragmentActivity implements
     protected void onPause() {
         super.onPause();
         if (mGoogleApiClient.isConnected()) {
+            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
             mGoogleApiClient.disconnect();
         }
     }
@@ -167,7 +178,7 @@ public class HomeActivity2 extends FragmentActivity implements
                 lastUpdate = curTime;
                 float speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime * 10000;
                 if (speed > SHAKE_THRESHOLD) {
-
+//TODO
 
                 }
 
@@ -193,6 +204,13 @@ public class HomeActivity2 extends FragmentActivity implements
             return;
         }
         Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        if (location == null) {
+            // Blank for a moment...
+        }
+        else {
+            handleNewLocation(location);
+        }
+
     }
 
     @Override
@@ -202,6 +220,29 @@ public class HomeActivity2 extends FragmentActivity implements
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-        Log.i(TAG, "Location services connection failed. Please reconnect.");
+        if (connectionResult.hasResolution()) {
+            try {
+                // Start an Activity that tries to resolve the error
+                connectionResult.startResolutionForResult(this, CONNECTION_FAILURE_RESOLUTION_REQUEST);
+            } catch (IntentSender.SendIntentException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Log.i(TAG, "Location services connection failed with code " + connectionResult.getErrorCode());
+        }
     }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        handleNewLocation(location);
+    }
+
+    private void handleNewLocation(Location location) {
+        Log.d(TAG, location.toString());
+        double currentLatitude = location.getLatitude();
+        double currentLongitude = location.getLongitude();
+        LatLng latLng = new LatLng(currentLatitude, currentLongitude);
+
+    }
+
 }

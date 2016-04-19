@@ -12,7 +12,7 @@ public final class LogHelperConstructor {
     }
 
     public static abstract class LogHelperEntry implements BaseColumns{
-        public static final String TABLE_NAME ="ChatLog";
+        public static final String TABLE_NAME ="ActivityLog";
         public static final String COLUMN_NAME_TYPE ="type";
         public static final String COLUMN_NAME_MESSAGE = "message";
         private static final String TEXT_TYPE = " TEXT";
