@@ -40,3 +40,4 @@ gradlew.bat
 app/.gitignore
 
 .gitignore.rej
+app/app.iml

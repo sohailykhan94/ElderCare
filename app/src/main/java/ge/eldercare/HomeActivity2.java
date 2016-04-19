@@ -37,9 +37,13 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import ge.eldercare.adapters.TabsPagerAdapter;
+import ge.eldercare.asynctasks.AsyncLogDBWrite;
+import ge.eldercare.dbhelperclasses.LogDBHelper;
 
 public class HomeActivity2 extends FragmentActivity implements
         ActionBar.TabListener, SensorEventListener, GoogleApiClient.ConnectionCallbacks,
@@ -62,6 +66,7 @@ public class HomeActivity2 extends FragmentActivity implements
 
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
+    LogDBHelper mDbHelper;
     public static final String TAG = HomeActivity2.class.getSimpleName();
 
     // Tab titles
@@ -123,6 +128,7 @@ public class HomeActivity2 extends FragmentActivity implements
                 .setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY)//100m Accuracy
                 .setInterval(3600 * 1000)        // 1 min, in milliseconds
                 .setFastestInterval(10 * 1000); // 10 second, in milliseconds
+        mDbHelper=new LogDBHelper(this);
     }
 
     @Override
@@ -242,7 +248,20 @@ public class HomeActivity2 extends FragmentActivity implements
         double currentLatitude = location.getLatitude();
         double currentLongitude = location.getLongitude();
         LatLng latLng = new LatLng(currentLatitude, currentLongitude);
-
+        String locInfo="Location was recorded as "+latLng.toString()+" at "+getCurrentTimeStamp();
+        new AsyncLogDBWrite(mDbHelper,"Location",locInfo).execute();
     }
 
+    public static String getCurrentTimeStamp(){
+        try {
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String currentTimeStamp = dateFormat.format(new Date()); // Find todays date
+
+            return currentTimeStamp;
+        } catch (Exception e) {
+            Log.d(TAG, e.getMessage(),e);
+            return null;
+        }
+    }
 }
