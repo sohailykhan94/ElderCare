@@ -12,4 +12,5 @@
     <color name="card_detailing">#eee</color>
     <color name="transparent">#00eeeeee</color>
     <color name="chatBG">#FAFAFA</color>
+    <color name="logo_color">#FAFAFA</color>
 </resources>

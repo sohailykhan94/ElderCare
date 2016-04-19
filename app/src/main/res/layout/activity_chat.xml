@@ -20,7 +20,8 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:background="@color/transparent"
-            android:src="@drawable/ic_arrow_back_24dp"/>
+            android:src="@drawable/ic_arrow_back_24dp"
+            android:onClick="back" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -73,19 +74,13 @@
 
         </android.support.v7.widget.Toolbar>
 
-    <ScrollView
+
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginBottom="56dp">
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/rv"
-            android:layout_marginTop="56dp"
-            android:layout_marginBottom="56dp" />
-    </ScrollView>
-
-
+        android:layout_height="match_parent"
+        android:id="@+id/rv"
+        android:layout_marginTop="56dp"
+        android:layout_marginBottom="56dp" />
 
     <RelativeLayout
         android:layout_width="match_parent"

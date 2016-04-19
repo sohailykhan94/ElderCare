@@ -4,11 +4,15 @@ import android.app.ActionBar;
 import ge.eldercare.adapters.TabsPagerAdapter;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
+<<<<<<< HEAD
+import android.content.Intent;
+=======
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+>>>>>>> cf8912936b09607ec4db1040d1cfa37113ce918c
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
@@ -91,6 +95,14 @@ public class HomeActivity2 extends FragmentActivity implements
             public void onPageScrollStateChanged(int arg0) {
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     @Override

@@ -87,6 +87,12 @@ public class LoginActivity2 extends AppCompatActivity implements AddEmergencyCon
         diseases.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.pull_in_left, R.anim.push_out_right);
+    }
+
     public void addEmergencyContact(View v){
 
         if(contactCount == 2){
@@ -103,6 +109,7 @@ public class LoginActivity2 extends AppCompatActivity implements AddEmergencyCon
     public void finishSignup(View v){
         Intent myIntent = new Intent(LoginActivity2.this, HomeActivity2.class);
         LoginActivity2.this.startActivity(myIntent);
+        overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
     }
 
     @Override

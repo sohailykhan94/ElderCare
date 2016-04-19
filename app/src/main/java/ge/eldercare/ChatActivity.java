@@ -12,6 +12,9 @@ import android.widget.EditText;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import ge.eldercare.adapters.ChatAdapter;
 
@@ -24,6 +27,8 @@ public class ChatActivity extends AppCompatActivity {
     private List<Chat> bubbles;
     private List<Chat> temp;
     ChatAdapter adapter;
+    private static final ScheduledExecutorService worker =
+            Executors.newSingleThreadScheduledExecutor();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,16 +53,28 @@ public class ChatActivity extends AppCompatActivity {
         temp.add(new Chat("Mrs. XYZ Khan", "We went out today. You?", R.drawable.profile2, false));
     }
 
+    public void back(View v){
+        this.onBackPressed();
+    }
+
     public void sendMessage(View v){
         EditText message = (EditText) findViewById(R.id.sendMessage);
         bubbles.add(new Chat("Mr. Sohail Yar Khan", message.getText().toString(), R.drawable.profile, true));
         message.setText("");
-        try{
-            bubbles.add(temp.get(count));
-            count++;
-            adapter.notifyDataSetChanged();
-        }catch (Exception e){
+        adapter.notifyDataSetChanged();
+        Runnable task = new Runnable() {
+            public void run() {
 
-        }
+                try{
+                    bubbles.add(temp.get(count));
+                    count++;
+                    adapter.notifyDataSetChanged();
+                }catch (Exception e){
+
+                }
+
+            }
+        };
+        worker.schedule(task, 3, TimeUnit.SECONDS);
     }
 }
