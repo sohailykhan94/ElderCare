@@ -66,8 +66,9 @@ public class HomeActivity2 extends FragmentActivity implements
     private SensorManager senSensorManager;
     private Sensor senAccelerometer;
     private long lastUpdate = 0;
-    private float last_x, last_y, last_z;
+    private double last_x, last_y, last_z;
     private static final int SHAKE_THRESHOLD = 600;
+    private static final int MOVE_THRESHOLD = 20;
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
     private static final int REQUEST_FINE_LOCATION = 0;
     private static final int REQUEST_COARSE_LOCATION=1;
@@ -232,18 +233,20 @@ public class HomeActivity2 extends FragmentActivity implements
         Sensor mySensor = event.sensor;
 
         if (mySensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-            float x = event.values[0];
-            float y = event.values[1];
-            float z = event.values[2];
+            double x = event.values[0];
+            double y = event.values[1];
+            double z = event.values[2];
             long curTime = System.currentTimeMillis();
 
             if ((curTime - lastUpdate) > 100) {
                 long diffTime = (curTime - lastUpdate);
                 lastUpdate = curTime;
-                float speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime * 10000;
-                if (speed > SHAKE_THRESHOLD) {
-//TODO
-
+                double speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime * 10000;
+                double distance=Math.sqrt(Math.pow((x-last_x),2.0)+Math.pow((y-last_y),2.0)+Math.pow((z-last_z),2.0));
+                if (speed > SHAKE_THRESHOLD&&distance> MOVE_THRESHOLD) {
+                    Log.d(TAG,"onSensorChange(): Speed="+speed+" "+distance );
+                    String fallInfo="Fall was detected at "+getCurrentTimeStamp();
+                    new AsyncLogDBWrite(mDbHelper,"Fall",fallInfo).execute();
                 }
 
                 last_x = x;

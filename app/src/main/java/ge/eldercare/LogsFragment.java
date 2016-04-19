@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,12 +26,14 @@ import java.util.List;
 import ge.eldercare.R;
 import ge.eldercare.adapters.LogAdapter;
 import ge.eldercare.dbhelperclasses.LogDBHelper;
+import ge.eldercare.dbhelperclasses.LogHelperConstructor;
 
 /**
  * Created by sohailyarkhan on 18/04/16.
  */
 public class LogsFragment extends Fragment{
 
+    public static final String TAG="LogsFragment";
     private List<LogEntry> entries;
     private LogDBHelper mDbHelper;
 
@@ -49,6 +52,8 @@ public class LogsFragment extends Fragment{
         mDbHelper=new LogDBHelper(getContext());
         RecyclerView rv = (RecyclerView)getView().findViewById(R.id.rv);
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        llm.setReverseLayout(true);
+        llm.setStackFromEnd(true);
         rv.setLayoutManager(llm);
         initializeData();
         LogAdapter adapter = new LogAdapter(entries);
@@ -57,35 +62,29 @@ public class LogsFragment extends Fragment{
 
     private void initializeData(){
         entries = new ArrayList<>();
-/*
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
-// Define a projection that specifies which columns from the database
-// you will actually use after this query.
-        String[] projection = {
-                FeedEntry._ID,
-                FeedEntry.COLUMN_NAME_TITLE,
-                FeedEntry.COLUMN_NAME_UPDATED,
-        ...
-        };
+        String[] projection = {LogHelperConstructor.LogHelperEntry.COLUMN_NAME_TYPE, LogHelperConstructor.LogHelperEntry.COLUMN_NAME_MESSAGE};
 
-// How you want the results sorted in the resulting Cursor
-        String sortOrder =
-                FeedEntry.COLUMN_NAME_UPDATED + " DESC";
 
         Cursor c = db.query(
-                FeedEntry.TABLE_NAME,  // The table to query
+                LogHelperConstructor.LogHelperEntry.TABLE_NAME,  // The table to query
                 projection,                               // The columns to return
-                selection,                                // The columns for the WHERE clause
-                selectionArgs,                            // The values for the WHERE clause
+                null,                                // The columns for the WHERE clause
+                null,                            // The values for the WHERE clause
                 null,                                     // don't group the rows
                 null,                                     // don't filter by row groups
-                sortOrder                                 // The sort order
+                null                                 // The sort order
         );
-*/
-        entries.add(new LogEntry("Emma Wilson", "23 years old"));
-        entries.add(new LogEntry("Lavery Maiss", "25 years old"));
-        entries.add(new LogEntry("Lillie Watts", "35 years old"));
+        Log.i(TAG,"Queried DB");
+        c.moveToFirst();
+        while(!c.isAfterLast())
+        {
+            String type=c.getString(c.getColumnIndex(LogHelperConstructor.LogHelperEntry.COLUMN_NAME_TYPE));
+            String content=c.getString(c.getColumnIndex(LogHelperConstructor.LogHelperEntry.COLUMN_NAME_MESSAGE));
+            entries.add(new LogEntry(type, content));
+            c.moveToNext();
+        }
     }
 
 
