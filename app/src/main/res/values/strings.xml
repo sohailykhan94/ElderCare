@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ElderCare</string>
+    <string name="app_name">Elder Care</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -24,7 +24,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="section_format">Hello World from section: %1$d</string>
-    <string name="title_activity_home2">HomeActivity2</string>
+    <string name="title_activity_home2">Home</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="google_maps_key_instructions" templateMergeStrategy="replace"><!--
 
@@ -42,6 +42,6 @@
   --></string>
 
     <string name="google_maps_key" templateMergeStrategy="preserve">AIzaSyBkvDwwfb2GVH5PY72N3Jt5lbEZgSk6BbE</string>
-    <string name="title_activity_landing">LandingActivity</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_landing">Elder Care</string>
+    <string name="title_activity_main">Elder Care</string>
 </resources>
