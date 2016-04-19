@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,26 +20,44 @@ public class ChatActivity extends AppCompatActivity {
     private RecyclerView rv;
     LinearLayoutManager llm;
     Context context;
+    private int count = 0;
     private List<Chat> bubbles;
+    private List<Chat> temp;
+    ChatAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-
         context = getApplicationContext();
         rv = (RecyclerView)findViewById(R.id.rv);
         llm = new LinearLayoutManager(context);
         rv.setLayoutManager(llm);
         initializeData();
 
-        ChatAdapter adapter = new ChatAdapter(bubbles, context);
+        adapter = new ChatAdapter(bubbles, context);
         rv.setAdapter(adapter);
     }
 
     private void initializeData(){
         bubbles = new ArrayList<>();
-        bubbles.add(new Chat("Mr. Sohail Yar Khan", "Hey! How are you? Missing you?", R.drawable.profile, true));
-        bubbles.add(new Chat("Mrs. XYZ Khan", "Hi! I'm Okay, feeling better.", R.drawable.profile2, false));
-        bubbles.add(new Chat("Mr. Sohail Yar Khan", "That's great. I'm coming over tomorrow okay. How's dad?", R.drawable.profile, true));
+        temp = new ArrayList<>();
+        temp.add(new Chat("Mrs. XYZ Khan", "Hi! I'm Okay, feeling better.", R.drawable.profile2, false));
+        temp.add(new Chat("Mrs. XYZ Khan", "He's fine as well", R.drawable.profile2, false));
+        temp.add(new Chat("Mrs. XYZ Khan", "When are you coming over?", R.drawable.profile2, false));
+        temp.add(new Chat("Mrs. XYZ Khan", "Great", R.drawable.profile2, false));
+        temp.add(new Chat("Mrs. XYZ Khan", "We went out today. You?", R.drawable.profile2, false));
+    }
+
+    public void sendMessage(View v){
+        EditText message = (EditText) findViewById(R.id.sendMessage);
+        bubbles.add(new Chat("Mr. Sohail Yar Khan", message.getText().toString(), R.drawable.profile, true));
+        message.setText("");
+        try{
+            bubbles.add(temp.get(count));
+            count++;
+            adapter.notifyDataSetChanged();
+        }catch (Exception e){
+
+        }
     }
 }
