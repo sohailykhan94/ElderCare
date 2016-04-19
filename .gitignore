@@ -37,7 +37,6 @@ ElderCare.iml
 gradle.properties
 gradlew
 gradlew.bat
-settings.gradle
 app/.gitignore
 
 .gitignore.rej
