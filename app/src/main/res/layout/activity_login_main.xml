@@ -35,59 +35,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Account information"
+                    android:text="Login"
                     android:id="@+id/title" />
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="User type"
-                android:contentDescription="Title Input"
-                android:textSize="18dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="16dp" />
-
-            <RadioGroup
-                android:id="@+id/radioTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp">
-
-                <RadioButton
-                    android:id="@+id/radioCaregiver"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Caregiver"
-                    android:checked="true" />
-
-                <RadioButton
-                    android:id="@+id/radioElder"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Elder" />
-
-            </RadioGroup>
-
-            <android.support.design.widget.TextInputLayout android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:contentDescription="Name"
-                android:layout_marginTop="16dp">
-
-                <AutoCompleteTextView android:id="@+id/name" android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:hint="@string/prompt_name"
-                    android:inputType="textPersonName" android:maxLines="1"
-                    android:singleLine="true"
-                    android:contentDescription="Name input" />
-
-            </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:contentDescription="Email"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="16dp">
 
                 <AutoCompleteTextView android:id="@+id/email" android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:hint="@string/prompt_email"
@@ -112,36 +67,9 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <TextView android:id="@+id/bday" android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:hint="@string/prompt_date" android:contentDescription="Birthday input"
-                android:textSize="18dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="16dp" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="16dp"
-                android:background="@color/white"
-                android:layout_marginTop="8dp"
-                android:elevation="4dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp"
-                android:clickable="true"
-                android:id="@+id/datePicker"
-                android:onClick="showDatePickerDialog">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:id="@+id/date"
-                    android:textSize="16dp" />
-            </RelativeLayout>
-
             <Button android:id="@+id/email_sign_in_button" style="?android:textAppearanceSmall"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:layout_marginTop="24dp" android:text="@string/next"
+                android:layout_marginTop="24dp" android:text="LOGIN"
                 android:textStyle="bold"
                 android:background="@color/colorPrimary"
                 android:textColor="@color/white" />

@@ -1,47 +1,49 @@
 package ge.eldercare;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
-import android.app.DatePickerDialog;
-import android.app.LoaderManager.LoaderCallbacks;
-import android.content.CursorLoader;
-import android.content.Intent;
-import android.content.Loader;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Build;
-import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
+        import android.animation.Animator;
+        import android.animation.AnimatorListenerAdapter;
+        import android.annotation.TargetApi;
+        import android.app.DatePickerDialog;
+        import android.content.Intent;
+        import android.content.pm.PackageManager;
+        import android.support.annotation.NonNull;
+        import android.support.design.widget.Snackbar;
+        import android.support.v4.app.DialogFragment;
+        import android.support.v7.app.AppCompatActivity;
+        import android.app.LoaderManager.LoaderCallbacks;
 
-import java.util.ArrayList;
-import java.util.List;
+        import android.content.CursorLoader;
+        import android.content.Loader;
+        import android.database.Cursor;
+        import android.net.Uri;
+        import android.os.AsyncTask;
 
-import static android.Manifest.permission.READ_CONTACTS;
+        import android.os.Build;
+        import android.os.Bundle;
+        import android.provider.ContactsContract;
+        import android.text.TextUtils;
+        import android.view.KeyEvent;
+        import android.view.View;
+        import android.view.View.OnClickListener;
+        import android.view.inputmethod.EditorInfo;
+        import android.widget.ArrayAdapter;
+        import android.widget.AutoCompleteTextView;
+        import android.widget.Button;
+        import android.widget.DatePicker;
+        import android.widget.EditText;
+        import android.widget.RadioButton;
+        import android.widget.RadioGroup;
+        import android.widget.TextView;
+
+        import java.util.ArrayList;
+        import java.util.List;
+
+        import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>, DatePickerDialog.OnDateSetListener {
+public class LoginMainActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>{
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -71,13 +73,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login_main);
         overridePendingTransition(R.anim.pull_up_from_bottom, R.anim.push_out_to_bottom);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
-        mNameView = (EditText) findViewById(R.id.name);
-        date = (TextView) findViewById(R.id.date);
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -102,18 +102,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mProgressView = findViewById(R.id.login_progress);
     }
 
-    public void showDatePickerDialog(View v) {
-        DialogFragment newFragment = new DatePickerFragment();
-        newFragment.show(getSupportFragmentManager(), "datePicker");
-    }
-
-    @Override
-    public void onDateSet(DatePicker view, int year, int month, int day) {
-        // Do something with the time chosen by the user
-        date.setText(day + "/" + (month + 1) + "/" + year);
-
-    }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -136,7 +124,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
         if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
             Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(android.R.string.ok, new OnClickListener() {
+                    .setAction(android.R.string.ok, new View.OnClickListener() {
                         @Override
                         @TargetApi(Build.VERSION_CODES.M)
                         public void onClick(View v) {
@@ -171,13 +159,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private void attemptLogin() {
 
         // Reset errors.
-        mNameView.setError(null);
         mEmailView.setError(null);
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
-        String name = mNameView.getText().toString();
         String password = mPasswordView.getText().toString();
 
         boolean cancel = false;
@@ -201,13 +187,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             cancel = true;
         }
 
-        // Check for a valid name.
-        if (TextUtils.isEmpty(name)) {
-            mNameView.setError(getString(R.string.error_field_required));
-            focusView = mNameView;
-            cancel = true;
-        }
-
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
@@ -216,23 +195,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             //showProgress(true);
-            RadioGroup radioGroupTitle = (RadioGroup) findViewById(R.id.radioTitle);
-
-            int selectedId = radioGroupTitle.getCheckedRadioButtonId();
 
             // find the radiobutton by returned id
-
-            RadioButton rb = (RadioButton) findViewById(selectedId);
-            if(rb.getText().toString().equals("Caregiver")){
-                Intent myIntent = new Intent(LoginActivity.this, HomeActivity2.class);
-                LoginActivity.this.startActivity(myIntent);
-                overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
-            }
-            else {
-                Intent myIntent = new Intent(LoginActivity.this, LoginActivity2.class);
-                LoginActivity.this.startActivity(myIntent);
-                overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
-            }
+            Intent myIntent = new Intent(LoginMainActivity.this, HomeActivity2.class);
+            LoginMainActivity.this.startActivity(myIntent);
+            overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
         }
     }
 
@@ -330,7 +297,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
         ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(LoginActivity.this,
+                new ArrayAdapter<>(LoginMainActivity.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
         mEmailView.setAdapter(adapter);
@@ -379,8 +346,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
-                Intent myIntent = new Intent(LoginActivity.this, LoginActivity2.class);
-                LoginActivity.this.startActivity(myIntent);
+                Intent myIntent = new Intent(LoginMainActivity.this, LoginActivity2.class);
+                LoginMainActivity.this.startActivity(myIntent);
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
@@ -394,3 +361,4 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 }
+

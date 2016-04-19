@@ -37,6 +37,16 @@
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" >
         </activity>
+
+        <activity
+            android:name=".LoginMainActivity"
+            android:allowBackup="true"
+            android:label="@string/signup_label"
+            android:screenOrientation="portrait"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
         <activity
             android:name=".HomeActivity2"
             android:label="@string/title_activity_home"
