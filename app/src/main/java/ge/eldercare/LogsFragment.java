@@ -1,6 +1,10 @@
 package ge.eldercare;
 
 
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,15 +26,17 @@ import ge.eldercare.adapters.LogAdapter;
 /**
  * Created by sohailyarkhan on 18/04/16.
  */
-public class LogsFragment extends Fragment {
+public class LogsFragment extends Fragment{
 
     private List<LogEntry> entries;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.logs_fragment, container, false);
+
         return rootView;
     }
 
@@ -51,6 +57,7 @@ public class LogsFragment extends Fragment {
         entries.add(new LogEntry("Lavery Maiss", "25 years old"));
         entries.add(new LogEntry("Lillie Watts", "35 years old"));
     }
+
 
 
 }
