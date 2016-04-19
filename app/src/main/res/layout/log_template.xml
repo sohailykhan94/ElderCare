@@ -5,39 +5,52 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:clickable="true"
+        android:contextClickable="true"
+        android:contentDescription="Chat Box 1"
+        android:id="@+id/rlMain1">
+
+        <ImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_photo"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_location_on_24dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/card_photo"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/ic_class_24dp" />
+            android:paddingRight="16dp"
+            android:background="@drawable/border_bottom_light"
+            android:paddingBottom="8dp"
+            android:id="@+id/rl1"
+            android:layout_marginLeft="16dp"
+            android:clickable="true"
+            android:layout_toRightOf="@+id/card_photo">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Location"
                 android:id="@+id/card_title"
-                android:layout_toRightOf="@+id/card_photo"
-                android:layout_alignParentTop="true"
-                android:textSize="30sp"
-                android:autoText="false"
-                android:text="Hi" />
+                android:textSize="16dp"
+                android:textColor="#000" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Movemented detected"
                 android:id="@+id/card_text"
-                android:layout_toRightOf="@+id/card_photo"
-                android:layout_below="@+id/card_title"
-                android:text="hi" />
-
+                android:textSize="13dp"
+                android:layout_marginTop="4dp"
+                android:textColor="#999"
+                android:layout_below="@+id/card_title" />
         </RelativeLayout>
+
     </RelativeLayout>
 </RelativeLayout>

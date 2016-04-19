@@ -34,7 +34,12 @@ public class LogAdapter extends RecyclerView.Adapter<LogAdapter.LogViewHolder>{
     public void onBindViewHolder(LogViewHolder holder, int i) {
         holder.logTitle.setText(logs.get(i).getTitle());
         holder.logContent.setText(logs.get(i).getContent());
-        holder.logIcon.setImageResource(R.drawable.ic_class_24dp);
+        if(logs.get(i).getTitle().toString().equals("Location")){
+            holder.logIcon.setImageResource(R.drawable.ic_location_on_24dp);
+        }
+        else{
+            holder.logIcon.setImageResource(R.drawable.ic_warning_24dp);
+        }
     }
 
     @Override

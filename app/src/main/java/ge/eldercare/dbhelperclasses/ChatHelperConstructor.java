@@ -20,7 +20,7 @@ public final class ChatHelperConstructor {
         private static final String COMMA_SEP = ", ";
         public static final String SQL_CREATE_ENTRIES = "CREATE TABLE "+ChatHelperEntry.TABLE_NAME+" ("+ChatHelperEntry._ID+
                 " INTEGER PRIMARY KEY, "+ChatHelperEntry.COLUMN_NAME_FROM_PERSON+ TEXT_TYPE+COMMA_SEP+COLUMN_NAME_TO_PERSON+TEXT_TYPE+COMMA_SEP
-                +COLUMN_NAME_MESSAGE+TEXT_TYPE+COMMA_SEP+ ")";
+                +COLUMN_NAME_MESSAGE+TEXT_TYPE+ ")";
 
         private static final String SQL_DELETE_ENTRIES =
                 "DROP TABLE IF EXISTS " + ChatHelperEntry.TABLE_NAME;
