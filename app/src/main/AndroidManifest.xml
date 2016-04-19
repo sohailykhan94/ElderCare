@@ -17,6 +17,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".LoginActivity"
+            android:windowSoftInputMode="stateHidden"
             android:label="@string/signup_label" >
 
             <!-- <intent-filter> -->
@@ -31,21 +32,33 @@
             android:allowBackup="true"
             android:label="@string/signup_label"
             android:supportsRtl="true"
+            android:windowSoftInputMode="stateHidden"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
             android:name=".HomeActivity2"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme2" >
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+        <activity
+            android:name=".ChatActivity"
+            android:label="@string/chat_activity"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name=".LandingActivity"
+            android:label="@string/title_activity_landing"
+            android:theme="@style/AppTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".ChatActivity"
-            android:label="@string/chat_activity"
-        android:theme="@style/AppTheme" >
         </activity>
     </application>
 

@@ -72,6 +72,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        overridePendingTransition(R.anim.pull_up_from_bottom, R.anim.push_out_to_bottom);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -212,6 +213,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             //showProgress(true);
             Intent myIntent = new Intent(LoginActivity.this, LoginActivity2.class);
             LoginActivity.this.startActivity(myIntent);
+            overridePendingTransition(R.anim.pull_in_right, R.anim.push_out_left);
         }
     }
 
