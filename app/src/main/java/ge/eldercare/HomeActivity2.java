@@ -66,7 +66,7 @@ public class HomeActivity2 extends FragmentActivity implements
 
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
-    LogDBHelper mDbHelper;
+    private LogDBHelper mDbHelper;
     public static final String TAG = HomeActivity2.class.getSimpleName();
 
     // Tab titles
@@ -76,7 +76,7 @@ public class HomeActivity2 extends FragmentActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home2);
-
+        mDbHelper=new LogDBHelper(this);
         // Initilization
         viewPager = (ViewPager) findViewById(R.id.pager);
         actionBar = getActionBar();
@@ -128,7 +128,6 @@ public class HomeActivity2 extends FragmentActivity implements
                 .setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY)//100m Accuracy
                 .setInterval(3600 * 1000)        // 1 min, in milliseconds
                 .setFastestInterval(10 * 1000); // 10 second, in milliseconds
-        mDbHelper=new LogDBHelper(this);
     }
 
     @Override
