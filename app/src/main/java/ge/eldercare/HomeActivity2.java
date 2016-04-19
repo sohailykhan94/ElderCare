@@ -1,6 +1,7 @@
 package ge.eldercare;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.ActionBar;
 
 import ge.eldercare.adapters.TabsPagerAdapter;
@@ -16,7 +17,9 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
@@ -45,6 +48,8 @@ import ge.eldercare.adapters.TabsPagerAdapter;
 import ge.eldercare.asynctasks.AsyncLogDBWrite;
 import ge.eldercare.dbhelperclasses.LogDBHelper;
 
+import static android.Manifest.permission.READ_CONTACTS;
+
 public class HomeActivity2 extends FragmentActivity implements
         ActionBar.TabListener, SensorEventListener, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,LocationListener {
@@ -59,7 +64,9 @@ public class HomeActivity2 extends FragmentActivity implements
     private float last_x, last_y, last_z;
     private static final int SHAKE_THRESHOLD = 600;
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
-
+    private static final int REQUEST_FINE_LOCATION = 0;
+    private static final int REQUEST_COARSE_LOCATION=1;
+    private static final int REQUEST_SMS=2;
     private ArrayList<String> listItems = new ArrayList<String>();
     private ArrayAdapter<String> adapter;
     private int adapterCount = 0;
@@ -77,6 +84,7 @@ public class HomeActivity2 extends FragmentActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home2);
         mDbHelper=new LogDBHelper(this);
+        permissionChecks();
         // Initilization
         viewPager = (ViewPager) findViewById(R.id.pager);
         actionBar = getActionBar();
@@ -128,6 +136,52 @@ public class HomeActivity2 extends FragmentActivity implements
                 .setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY)//100m Accuracy
                 .setInterval(3600 * 1000)        // 1 min, in milliseconds
                 .setFastestInterval(10 * 1000); // 10 second, in milliseconds
+    }
+
+    private void permissionChecks() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
+
+            if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
+                Snackbar.make(getCurrentFocus(), R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
+                        .setAction(android.R.string.ok, new View.OnClickListener() {
+                            @Override
+                            @TargetApi(Build.VERSION_CODES.M)
+                            public void onClick(View v) {
+                                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_FINE_LOCATION);
+                            }
+                        });
+            } else {
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_FINE_LOCATION);
+            }
+        }
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                Snackbar.make(getCurrentFocus(), R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
+                        .setAction(android.R.string.ok, new View.OnClickListener() {
+                            @Override
+                            @TargetApi(Build.VERSION_CODES.M)
+                            public void onClick(View v) {
+                                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_COARSE_LOCATION);
+                            }
+                        });
+            } else {
+                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_COARSE_LOCATION);
+            }
+        }
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED){
+            if (shouldShowRequestPermissionRationale(Manifest.permission.SEND_SMS)) {
+                Snackbar.make(getCurrentFocus(), R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
+                        .setAction(android.R.string.ok, new View.OnClickListener() {
+                            @Override
+                            @TargetApi(Build.VERSION_CODES.M)
+                            public void onClick(View v) {
+                                requestPermissions(new String[]{Manifest.permission.SEND_SMS}, REQUEST_SMS);
+                            }
+                        });
+            } else {
+                requestPermissions(new String[]{Manifest.permission.SEND_SMS}, REQUEST_SMS);
+            }
+        }
     }
 
     @Override
@@ -205,7 +259,6 @@ public class HomeActivity2 extends FragmentActivity implements
     public void onConnected(Bundle bundle) {
         Log.i(TAG, "Location services connected.");
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Log.i(TAG, "Location permissions not granted.");
             return;
         }
         Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
