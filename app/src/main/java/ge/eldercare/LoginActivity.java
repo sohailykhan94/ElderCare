@@ -110,8 +110,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     @Override
     public void onDateSet(DatePicker view, int year, int month, int day) {
         // Do something with the time chosen by the user
-        date.setText(day + "/" + (month+1) + "/" + year);
+        date.setText(day + "/" + (month + 1) + "/" + year);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     private void populateAutoComplete() {

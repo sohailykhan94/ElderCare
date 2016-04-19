@@ -22,7 +22,9 @@
             android:id="@+id/login"
             android:layout_weight="1"
             android:textColor="#fff"
-            android:onClick="launchLogin" />
+            android:onClick="launchLogin"
+            android:clickable="true"
+            android:contentDescription="Login Button" />
 
         <Button
             android:layout_width="wrap_content"
@@ -31,7 +33,9 @@
             android:background="@color/signUpBG"
             android:id="@+id/signup"
             android:layout_weight="1"
-            android:onClick="launchSignup" />
+            android:onClick="launchSignup"
+            android:clickable="true"
+            android:contentDescription="Signup Button" />
     </LinearLayout>
 
     <ImageView

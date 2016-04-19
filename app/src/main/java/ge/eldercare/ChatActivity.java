@@ -2,13 +2,16 @@ package ge.eldercare;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,9 +44,16 @@ public class ChatActivity extends AppCompatActivity {
 
         adapter = new ChatAdapter(bubbles, context);
         rv.setAdapter(adapter);
+
+        ImageButton backBtn = (ImageButton) findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
-    private void initializeData(){
+    private void initializeData() {
         bubbles = new ArrayList<>();
         temp = new ArrayList<>();
         temp.add(new Chat("Mrs. XYZ Khan", "Hi! I'm Okay, feeling better.", R.drawable.profile2, false));
@@ -51,10 +61,6 @@ public class ChatActivity extends AppCompatActivity {
         temp.add(new Chat("Mrs. XYZ Khan", "When are you coming over?", R.drawable.profile2, false));
         temp.add(new Chat("Mrs. XYZ Khan", "Great", R.drawable.profile2, false));
         temp.add(new Chat("Mrs. XYZ Khan", "We went out today. You?", R.drawable.profile2, false));
-    }
-
-    public void back(View v){
-        this.onBackPressed();
     }
 
     public void sendMessage(View v){

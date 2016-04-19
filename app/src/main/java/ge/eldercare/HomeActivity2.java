@@ -4,23 +4,22 @@ import android.app.ActionBar;
 import ge.eldercare.adapters.TabsPagerAdapter;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
-<<<<<<< HEAD
 import android.content.Intent;
-=======
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
->>>>>>> cf8912936b09607ec4db1040d1cfa37113ce918c
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -73,6 +72,7 @@ public class HomeActivity2 extends FragmentActivity implements
         for (String tab_name : tabs) {
             actionBar.addTab(actionBar.newTab().setText(tab_name)
                     .setTabListener(this));
+
         }
 
         /**

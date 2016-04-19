@@ -21,7 +21,9 @@
             android:layout_height="24dp"
             android:background="@color/transparent"
             android:src="@drawable/ic_arrow_back_24dp"
-            android:onClick="back" />
+            android:clickable="true"
+            android:contentDescription="Back button chat"
+            android:id="@+id/backBtn" />
 
         <RelativeLayout
             android:layout_width="match_parent"
