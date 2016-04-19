@@ -39,13 +39,8 @@ Thumbs.db
 .gradle
 build/
 
-<<<<<<< HEAD
 # Keystore files
 *.jks
 .idea/
 gradlew
 gradle/
-=======
-#NDK
-obj/
->>>>>>> 744cebe98070830750771d6b757ba531df13a77b
