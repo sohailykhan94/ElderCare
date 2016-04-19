@@ -19,7 +19,7 @@
         android:layout_margin="16dp"
         android:clickable="true"
         android:onClick="sendSMSHandler"
-        android:src="@drawable/ic_warning_24dp"
+        android:src="@drawable/ic_warning"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"/>
 

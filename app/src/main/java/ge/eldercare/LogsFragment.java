@@ -34,8 +34,11 @@ import ge.eldercare.dbhelperclasses.LogHelperConstructor;
 public class LogsFragment extends Fragment{
 
     public static final String TAG="LogsFragment";
-    private List<LogEntry> entries;
-    private LogDBHelper mDbHelper;
+    private static List<LogEntry> entries;
+    private static LogDBHelper mDbHelper;
+    public static LogAdapter adapter;
+    private static RecyclerView rv;
+    private static LinearLayoutManager llm;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,19 +52,20 @@ public class LogsFragment extends Fragment{
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
         super.onViewCreated(view,savedInstanceState);
+        entries=new ArrayList<>();
         mDbHelper=new LogDBHelper(getContext());
-        RecyclerView rv = (RecyclerView)getView().findViewById(R.id.rv);
-        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        rv = (RecyclerView)getView().findViewById(R.id.rv);
+        llm = new LinearLayoutManager(getContext());
         llm.setReverseLayout(true);
         llm.setStackFromEnd(true);
         rv.setLayoutManager(llm);
         initializeData();
-        LogAdapter adapter = new LogAdapter(entries);
+        adapter= new LogAdapter(entries);
         rv.setAdapter(adapter);
     }
 
-    private void initializeData(){
-        entries = new ArrayList<>();
+    private static void initializeData(){
+        //entries = new ArrayList<>();
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
         String[] projection = {LogHelperConstructor.LogHelperEntry.COLUMN_NAME_TYPE, LogHelperConstructor.LogHelperEntry.COLUMN_NAME_MESSAGE};
@@ -88,5 +92,11 @@ public class LogsFragment extends Fragment{
     }
 
 
-
+    public static void notifyDatasetChange() {
+        if(entries!=null)
+        entries.clear();
+        initializeData();
+        if(adapter!=null)
+        adapter.notifyDataSetChanged();
+    }
 }

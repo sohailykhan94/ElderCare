@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import ge.eldercare.LogsFragment;
 import ge.eldercare.dbhelperclasses.LogDBHelper;
 import ge.eldercare.dbhelperclasses.LogHelperConstructor;
 
@@ -41,4 +42,9 @@ public class AsyncLogDBWrite extends AsyncTask<Void,Void,Void>{
         return null;
     }
 
+    @Override
+    protected void onPostExecute(Void aVoid) {
+        super.onPostExecute(aVoid);
+        LogsFragment.notifyDatasetChange();
+    }
 }

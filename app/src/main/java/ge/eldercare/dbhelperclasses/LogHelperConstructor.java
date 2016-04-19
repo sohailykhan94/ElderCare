@@ -18,7 +18,7 @@ public final class LogHelperConstructor {
         private static final String TEXT_TYPE = " TEXT";
         private static final String COMMA_SEP = ",";
         public static final String SQL_CREATE_ENTRIES = "CREATE TABLE "+LogHelperEntry.TABLE_NAME+" ("+LogHelperEntry._ID+
-                " INTEGER PRIMARY KEY, "+LogHelperEntry.COLUMN_NAME_TYPE+ TEXT_TYPE+COMMA_SEP+LogHelperEntry.COLUMN_NAME_MESSAGE+TEXT_TYPE+COMMA_SEP+ ")";
+                " INTEGER PRIMARY KEY, "+LogHelperEntry.COLUMN_NAME_TYPE+ TEXT_TYPE+COMMA_SEP+LogHelperEntry.COLUMN_NAME_MESSAGE+TEXT_TYPE+ ")";
 
         private static final String SQL_DELETE_ENTRIES =
                 "DROP TABLE IF EXISTS " + LogHelperEntry.TABLE_NAME;

@@ -67,8 +67,8 @@ public class HomeActivity2 extends FragmentActivity implements
     private Sensor senAccelerometer;
     private long lastUpdate = 0;
     private double last_x, last_y, last_z;
-    private static final int SHAKE_THRESHOLD = 600;
-    private static final int MOVE_THRESHOLD = 20;
+    private static final int SHAKE_THRESHOLD = 700;
+    private static final int MOVE_THRESHOLD = 25;
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
     private static final int REQUEST_FINE_LOCATION = 0;
     private static final int REQUEST_COARSE_LOCATION=1;
