@@ -33,7 +33,7 @@ public class LandingActivity extends AppCompatActivity {
     }
 
     public void launchLogin(View v){
-        Intent myIntent = new Intent(LandingActivity.this, HomeActivity2.class);
+        Intent myIntent = new Intent(LandingActivity.this, LoginMainActivity.class);
         LandingActivity.this.startActivity(myIntent);
     }
 
